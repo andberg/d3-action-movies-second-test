@@ -1,9 +1,8 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+(function () {
 
-	var width = 800;
-	var height = 500;
-
-
+	var width = 850;
+	var height = 700;
+	var nodes = {};
 	var links = [{
 		source: "Die Hard",
 		target: "Die Hard",
@@ -110,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		type: "Crippled avengers"
 	}];
 
-	var nodes = {};
 
 	// Compute the distinct nodes from the links.
 	links.forEach(function (link) {
@@ -126,8 +124,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		.nodes(d3.values(nodes))
 		.links(links)
 		.size([width, height])
-		.linkDistance(100)
-		.charge(-300)
+		.linkDistance(130)
+		.charge(-400)
 		.on("tick", tick)
 		.start();
 
@@ -146,7 +144,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		.attr("class", "node")
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
-		.on("click", click)
+		.on("click", function (d) {
+			return click(d);
+		})
 		.call(force.drag);
 
 	node.append("circle")
@@ -193,13 +193,34 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			.attr("r", 8);
 	}
 
-	function click() {
-		var currentFilm = this;
+	function click(d) {
+		var currentFilm = d;
+		var completeFilmInfo;
 
+		for (var i in filmsObject.nodes) {
+			if (currentFilm.name === filmsObject.nodes[i].title) {
+				completeFilmInfo = filmsObject.nodes[i];
+			}
+		}
+		return populateFilmInfoContainer(completeFilmInfo);
 	}
 
-	d3.select("#title-text").append("svg")
-		.attr("width", width)
-		.attr("height", height / 2)
-		.attr("class", "target-content");
-});
+	function populateFilmInfoContainer(film) {
+		$("#title").text(film.title);
+		$("#headline").text(film.headline);
+		$("#director").text(film.director);
+		$("#year").text(film.year);
+		$("#cinematography").text(film.cinematography);
+		$("#editing").text(film.editing);
+
+		film.stuntCoordinator ? $("#stuntCoordinator").text(film.stuntCoordinator) : $("#stuntCoordinator").text(" - ");
+		film.secondUnitDirector ? $("#secondUnitDirector").text(film.secondUnitDirector) : $("#secondUnitDirector").text(" - ");
+		film.fightChoreographer ? $("#fightChoreographer").text(film.fightChoreographer) : $("#fightChoreographer").text(" - ");
+		film.fightCoordinator ? $("#fightCoordinator").text(film.fightCoordinator) : $("#fightCoordinator").text(" - ");
+		film.actionDirector ? $("#actionDirector").text(film.actionDirector) : $("#actionDirector").text(" - ");
+		film.actionCoordinator ? $("#actionCoordinator").text(film.actionCoordinator) : $("#actionCoordinator").text(" - ");
+		film.actionChoreograhper ? $("#actionChoreograhper").text(film.actionChoreograhper) : $("#actionChoreograhper").text(" - ");
+		film.carStuntCoordinator ? $("#carStuntCoordinator").text(film.carStuntCoordinator) : $("#carStuntCoordinator").text(" - ");
+	}
+
+})();

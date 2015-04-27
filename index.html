@@ -16,14 +16,50 @@
       <h1> From action to action </h1>
     </div>
     <p id="intro">
-      This is a list of Action movies made by Anders Hultqvist showing his theory on which movies paved the way for other genres and/or other movies, if you like, it's children. <br> It's also my first laboration with the Javascript library <a href="http://www.d3js.org">D3js.</a> My goal for this example is to get out the data with the underlying connections. 
+      This is a list of Action movies made by Anders Hultqvist showing his theory on collapsing visual signifiers, a way to contextualize action cinema. <br> It's also my second laboration with the Javascript library <a href="http://www.d3js.org">D3js.</a> My goal for this example was to get out the movie-data with it's underlying connections. And also to bind click-events to the nodes for interaction and a way to display the movies complete information. 
     </p>
-    <div id="movies">
-    </div>
-    <div id="target"></div>
+    <div class="movieContainer">
+
+      <div id="populateFilmInfoContainer">
+
+        <h2> Complete Film Info </h2>
+        <p class="bold">Headline: </p><p class="bold" id="headline"></p>
+        <br />
+        <p class="bold">Title: </p><p id="title"></p>
+        <br />
+        <p class="bold">Year: </p><p id="year"></p>
+        <br />
+        <p class="bold">Director: </p><p id="director"></p>
+        <br />
+        <p class="bold">Cinematography: </p><p id="cinematography"></p>
+        <br />
+        <p class="bold">Editing: </p><p id="editing"></p>
+        <br />
+        <p class="bold">Second unit director: </p><p id="secondUnitDirector"></p>
+        <br />
+        <p class="bold">Stunt Coordinator: </p><p id="stuntCoordinator"></p>
+        <br />
+        <p class="bold">Fight Choreographer: </p><p id="fightChoreographer"></p>
+        <br />
+        <p class="bold">Fight Coordinator: </p><p id="fightCoordinator"></p>
+        <br />
+        <p class="bold">Action Director: </p><p id="actionDirector"></p>
+        <br />
+        <p class="bold">Action Coordinator: </p><p id="actionCoordinator"></p>
+        <br />
+        <p class="bold">Action Choreography: </p><p id="actionChoreograhper"></p>
+        <br />
+        <p class="bold">Car Stunt Coordinator: </p><p id="carStuntCoordinator"></p>
+
+      </div> <!-- close populateFilmInfoContainer -->
+
+      <div id="movies"></div>
+
+    </div> <!-- close movieContainer -->
   </div>
   <script type="text/javascript" src="./resources/d3.js"></script>
+  <script type="text/javascript" src="./js/data-storage.js"></script>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/main.js"></script>
-  <script type="text/javascript" src="./js/action-movies.js"></script>
 </body> <!-- close body -->
 </html> <!-- close html -->
